@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.example.sony.training.OnRecyclerViewItemClickListener;
 import com.example.sony.training.R;
-import com.example.sony.training.model.Item;
+import com.example.sony.training.model.User;
+import com.example.sony.training.presenter.ListGithubUserPresenter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +19,12 @@ import java.util.List;
  * Created by daolq on 11/8/17.
  */
 
-public class GitHubUserAdapter extends RecyclerView.Adapter {
+public class ListGitHubUserAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
     private OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
-    private List<Item> mUsers = new ArrayList<>();
-
-    public GitHubUserAdapter(Context context) {
+    private List<User> mUsers = new ArrayList<>();
+    public ListGitHubUserAdapter(Context context) {
         mContext = context;
     }
 
@@ -48,7 +50,7 @@ public class GitHubUserAdapter extends RecyclerView.Adapter {
         mOnRecyclerViewItemClickListener = onRecyclerViewItemClickListener;
     }
 
-    public void updateData(List<Item> users) {
+    public void updateData(List<User> users) {
         if (users == null) {
             return;
         }
@@ -59,11 +61,12 @@ public class GitHubUserAdapter extends RecyclerView.Adapter {
     static class ItemNewFeedViewHolder extends RecyclerView.ViewHolder {
 
         private OnRecyclerViewItemClickListener mOnRecyclerViewItemClickListener;
-        private Item mUser;
+        private User mUser;
         private TextView userIdTextView, userNameTextView;
+        private ListGithubUserPresenter listGithubUserPresenter;
 
         public ItemNewFeedViewHolder(View itemView,
-                OnRecyclerViewItemClickListener onRecyclerViewItemClickListener) {
+                                     OnRecyclerViewItemClickListener onRecyclerViewItemClickListener) {
             super(itemView);
             mOnRecyclerViewItemClickListener = onRecyclerViewItemClickListener;
             userIdTextView = (TextView) itemView.findViewById(R.id.userIdTextView);
@@ -76,9 +79,8 @@ public class GitHubUserAdapter extends RecyclerView.Adapter {
             });
         }
 
-        public void fillData(Item user) {
+        public void fillData(User user) {
             mUser = user;
-            userIdTextView.setText(user.getId().toString());
             userNameTextView.setText(user.getLogin());
         }
     }

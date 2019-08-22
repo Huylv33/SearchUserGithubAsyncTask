@@ -4,7 +4,7 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GithubUser {
+public class UserResponse {
 
     @SerializedName("total_count")
     @Expose
@@ -14,7 +14,7 @@ public class GithubUser {
     private Boolean incompleteResults;
     @SerializedName("items")
     @Expose
-    private List<Item> items = null;
+    private List<User> items = null;
 
     public Integer getTotalCount() {
         return totalCount;
@@ -32,11 +32,11 @@ public class GithubUser {
         this.incompleteResults = incompleteResults;
     }
 
-    public List<Item> getItems() {
+    public List<User> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(List<User> items) {
         this.items = items;
     }
 

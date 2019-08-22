@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Item implements Parcelable {
+public class User implements Parcelable {
 
     @SerializedName("login")
     @Expose
@@ -62,7 +62,7 @@ public class Item implements Parcelable {
     @Expose
     private Double score;
 
-    protected Item(Parcel in) {
+    protected User(Parcel in) {
         login = in.readString();
         if (in.readByte() == 0) {
             id = null;
@@ -129,15 +129,15 @@ public class Item implements Parcelable {
         return 0;
     }
 
-    public static final Creator<Item> CREATOR = new Creator<Item>() {
+    public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
-        public Item createFromParcel(Parcel in) {
-            return new Item(in);
+        public User createFromParcel(Parcel in) {
+            return new User(in);
         }
 
         @Override
-        public Item[] newArray(int size) {
-            return new Item[size];
+        public User[] newArray(int size) {
+            return new User[size];
         }
     };
 
